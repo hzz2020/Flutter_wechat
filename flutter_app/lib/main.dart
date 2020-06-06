@@ -8,6 +8,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      /// 隐藏右上角Debug标志
       debugShowCheckedModeBanner: false,
       title: '微信',
       theme: defaultThemeData,

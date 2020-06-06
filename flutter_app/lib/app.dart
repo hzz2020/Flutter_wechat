@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import './pages/test_page.dart';
+import './01wechat/wechat_page.dart';
+import './02contact/contact_page.dart';
+import './03found/found_page.dart';
+import './04profile/profile_page.dart';
 
 class App extends StatefulWidget {
   @override
@@ -12,10 +15,10 @@ class _AppState extends State<App> {
   var currentPage;
   /// 底部对应的页面
   final List tabBodies = [
-    TestPage('微信'),
-    TestPage('通讯录'),
-    TestPage('发现'),
-    TestPage('我'),
+    WechatPage(),
+    ContactPage(),
+    FoundPage(),
+    ProfilePage(),
   ];
 
 
