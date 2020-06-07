@@ -30,17 +30,24 @@ class _ProfilePageState extends State<ProfilePage> {
                     children: <Widget>[
                       GestureDetector(
                         behavior: HitTestBehavior.opaque,
-                        child: Container(
-                          margin: const EdgeInsets.only(left: 331),/// 需要修改
-                          child: IconButton(
-                            icon: Icon(Icons.camera_alt),
-                            onPressed: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (BuildContext context) {
-                                return TestPage('发朋友圈');
-                              }));
-                            },
-                          ),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            /// 占位用
+                            Expanded(child: Text('')),
+                            /// 摄像头
+                            Container(
+                              child: IconButton(
+                                icon: Icon(Icons.camera_alt),
+                                onPressed: () {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (BuildContext context) {
+                                        return TestPage('发朋友圈');
+                                      }));
+                                },
+                              ),
+                            ),
+                          ],
                         ),
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
@@ -49,13 +56,16 @@ class _ProfilePageState extends State<ProfilePage> {
                           }));
                         },
                       ),
+
+                      /// 个人头像、昵称，微信号，二维码等信息
                       GestureDetector(
+                        behavior: HitTestBehavior.opaque,
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
                             Container(
                               margin: const EdgeInsets.only(
-                                  left: 12.0, right: 15.0),
+                                  left: 20.0, right: 15.0),
                               child: Image.asset(
                                 'images/04profile/icon_head.png',
                                 width: 70.0,
@@ -87,10 +97,17 @@ class _ProfilePageState extends State<ProfilePage> {
                             Container(
                               margin: const EdgeInsets.only(
                                   left: 12.0, right: 25.0),
-                              child: Image.asset(
-                                'images/04profile/icon_head_code.png',
-                                width: 16.0,
-                                height: 16.0,
+                              child: IconButton(
+                                icon: Image.asset(
+                                  'images/04profile/icon_head_code.png',
+                                  width: 16.0,
+                                  height: 16.0,
+                                ),
+                                onPressed: () {
+                                  Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
+                                    return TestPage('二维码界面');
+                                  }));
+                                },
                               ),
                             ),
                             Container(
@@ -113,6 +130,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     ],
                   ),
                 ),
+                /// 支付
                 Container(
                   margin: const EdgeInsets.only(top: 10.0),
                   color: Colors.white,
@@ -121,6 +139,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     imagePath: 'images/04profile/icon_me_money.png',
                   ),
                 ),
+                /// 收藏、相册、表情
                 Container(
                   margin: const EdgeInsets.only(top: 10.0),
                   color: Colors.white,
@@ -155,6 +174,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     ],
                   ),
                 ),
+                /// 设置
                 Container(
                   margin: const EdgeInsets.only(top: 10.0),
                   color: Colors.white,
@@ -168,7 +188,6 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
         ],
       ),
-      color: Colors.red,
     );
   }
 }
