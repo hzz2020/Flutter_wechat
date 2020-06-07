@@ -54,7 +54,7 @@ class _FoundPageState extends State<FoundPage> {
                   title: '扫一扫',
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                  padding: const EdgeInsets.only(left: 15.0),
                   child: Divider(
                     height: 0.5,
                     color: Color(0xFFd9d9d9),
@@ -78,7 +78,7 @@ class _FoundPageState extends State<FoundPage> {
                   title: '看一看',
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                  padding: const EdgeInsets.only(left: 15.0),
                   child: Divider(
                     height: 0.5,
                     color: Color(0xFFd9d9d9),
@@ -111,7 +111,7 @@ class _FoundPageState extends State<FoundPage> {
                   title: '购物',
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                  padding: const EdgeInsets.only(left: 15.0),
                   child: Divider(
                     height: 0.5,
                     color: Color(0xFFd9d9d9),

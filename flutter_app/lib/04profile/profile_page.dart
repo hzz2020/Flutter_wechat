@@ -150,7 +150,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         title: '收藏',
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                        padding: const EdgeInsets.only(left: 15.0),
                         child: Divider(
                           height: 0.5,
                           color: Color(0xFFd9d9d9),
@@ -161,7 +161,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         title: '相册',
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                        padding: const EdgeInsets.only(left: 15.0),
                         child: Divider(
                           height: 0.5,
                           color: Color(0xFFd9d9d9),
