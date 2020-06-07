@@ -17,12 +17,7 @@ class _SplashPageState extends State<SplashPage> {
   }
 
   _toAppPage() {
-    Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (BuildContext context){
-          return App();
-        }),
-        (route) => route == null
-    );
+    Navigator.pushNamedAndRemoveUntil(context, 'app', (route) => route == null);
   }
 
   @override

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
 
-import 'package:wechat/pages/test_page.dart';
+import '../pages/test_page.dart';
 
 class WechatPage extends StatefulWidget {
   @override
@@ -92,8 +91,45 @@ class _WechatPageState extends State<WechatPage> {
           )
         ],
       ),
-      body: Center(
-        child: Text('wechat'),
+      body: ListView(
+        children: <Widget>[
+          /// 搜索框
+          Container(
+            child: GestureDetector(
+              child: Container(
+                margin: const EdgeInsets.only(top: 10.0, left: 10.0, right: 10.0),
+                alignment: Alignment.center,
+                height: 30.0,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Icon(
+                      Icons.search,
+                      color: Colors.grey,
+                      size: 18,
+                    ),
+                    Text(
+                      '搜索',
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                  ],
+                ),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(6),
+                  color: Colors.white,
+                  border: Border.all(
+                    width: 1.0,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+              onTap: (){
+                Navigator.pushNamed(context, 'search');
+              },
+            ),
+          ),
+        ],
       ),
     );
   }

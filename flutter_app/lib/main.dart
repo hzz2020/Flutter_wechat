@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-
+import 'app.dart';
 import 'splash_page.dart';
+import './pages/search_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -13,6 +14,10 @@ class MyApp extends StatelessWidget {
       title: '微信',
       theme: defaultThemeData,
       home: SplashPage(),
+      routes: <String, WidgetBuilder>{
+        "app": (BuildContext context) => App(),
+        "search": (BuildContext context) => SearchPage(),
+      },
     );
   }
 }
