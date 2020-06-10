@@ -10,22 +10,47 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
+  // pages
+  List<Widget> _pages = List();
+  List<BottomNavigationBarItem> _items = List();
 
-  var currentIndex = 0;
-  var currentPage;
-  /// 底部对应的页面
-  final List tabBodies = [
-    WechatPage(),
-    ContactPage(),
-    FoundPage(),
-    ProfilePage(),
-  ];
+  int _currentIndex = 0;
 
+  final PageController _controller = PageController(
+    initialPage: 0,
+  );
 
   @override
   void initState() {
     super.initState();
-    currentPage = tabBodies[currentIndex];
+
+    _items
+      ..add(_bottomBarItem('微信', 0,
+          imagePathHL: 'images/tabbar/tabbar_mainframeHL.png',
+          imagePath: 'images/tabbar/tabbar_mainframe.png',
+          width: 25.0,
+          height: 23.0))
+      ..add(_bottomBarItem('通讯录', 1,
+          imagePathHL: 'images/tabbar/tabbar_contactsHL.png',
+          imagePath: 'images/tabbar/tabbar_contacts.png',
+          width: 27.0,
+          height: 23.0))
+      ..add(_bottomBarItem('发现', 2,
+          imagePathHL: 'images/tabbar/tabbar_discoverHL.png',
+          imagePath: 'images/tabbar/tabbar_discover.png',
+          width: 23.0,
+          height: 23.0))
+      ..add(_bottomBarItem('我', 3,
+          imagePathHL: 'images/tabbar/tabbar_meHL.png',
+          imagePath: 'images/tabbar/tabbar_me.png',
+          width: 23.0,
+          height: 23.0));
+
+    _pages
+      ..add(WechatPage())
+      ..add(ContactPage())
+      ..add(FoundPage())
+      ..add(ProfilePage());
   }
 
   @override
@@ -38,102 +63,38 @@ class _AppState extends State<App> {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        currentIndex: currentIndex,
-        items: [
-          BottomNavigationBarItem(
-            icon: currentIndex == 0
-                ? Image.asset(
-              'images/tabbar/tabbar_mainframeHL.png',
-              width: 25,
-              height: 23,
-            )
-                : Image.asset(
-              'images/tabbar/tabbar_mainframe.png',
-              width: 25,
-              height: 23,
-            ),
-            title: Text(
-              '微信',
-              style: TextStyle(
-                color:
-                currentIndex == 0 ? Color(0xff46c01b) : Color(0xff999999),
-                fontSize: 12,
-              ),
-            ),
-          ),
-          BottomNavigationBarItem(
-            icon: currentIndex == 1
-                ? Image.asset(
-              'images/tabbar/tabbar_contactsHL.png',
-              width: 27,
-              height: 23,
-            )
-                : Image.asset(
-              'images/tabbar/tabbar_contacts.png',
-              width: 27,
-              height: 23,
-            ),
-            title: Text(
-              '通讯录',
-              style: TextStyle(
-                color:
-                currentIndex == 1 ? Color(0xff46c01b) : Color(0xff999999),
-                fontSize: 12,
-              ),
-            ),
-          ),
-          BottomNavigationBarItem(
-            icon: currentIndex == 2
-                ? Image.asset(
-              'images/tabbar/tabbar_discoverHL.png',
-              width: 23,
-              height: 23,
-            )
-                : Image.asset(
-              'images/tabbar/tabbar_discover.png',
-              width: 23,
-              height: 23,
-            ),
-            title: Text(
-              '发现',
-              style: TextStyle(
-                color:
-                currentIndex == 2 ? Color(0xff46c01b) : Color(0xff999999),
-                fontSize: 12,
-              ),
-            ),
-          ),
-          BottomNavigationBarItem(
-            icon: currentIndex == 3
-                ? Image.asset(
-              'images/tabbar/tabbar_meHL.png',
-              width: 23,
-              height: 23,
-            )
-                : Image.asset(
-              'images/tabbar/tabbar_me.png',
-              width: 23,
-              height: 23,
-            ),
-            title: Text(
-              '我',
-              style: TextStyle(
-                color:
-                currentIndex == 3 ? Color(0xff46c01b) : Color(0xff999999),
-                fontSize: 12,
-              ),
-            ),
-          ),
-        ],
+        currentIndex: _currentIndex,
+        items: _items,
         onTap: (index) {
+          _controller.jumpToPage(index);
           setState(() {
             print('点击了底部的第${index + 1}个');
-            currentIndex = index;
-            currentPage = tabBodies[currentIndex];
+            _currentIndex = index;
           });
         },
       ),
-      body: currentPage,
+      body: PageView(
+        controller: _controller,
+        children: _pages,
+        physics: NeverScrollableScrollPhysics(),
+      ),
+    );
+  }
+
+  /// bottomBarItem
+  _bottomBarItem(String title, int index,
+      {String imagePathHL, String imagePath, double width, double height}) {
+    return BottomNavigationBarItem(
+      icon: Image.asset(imagePath,),
+      activeIcon: Image.asset(imagePathHL),
+      title: Text(
+        title,
+        textScaleFactor: 1.0,
+        style: TextStyle(
+//          color: _currentIndex == index ? Color(0xff46c01b) : Color(0xff999999),
+          fontSize: 10,
+        ),
+      ),
     );
   }
 }
